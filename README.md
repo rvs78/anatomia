@@ -22,7 +22,10 @@ L'especificació completa (requisits, regles i criteris d'acceptació) és a [`d
 
 - **Sense instal·lar res:** obre `index.html` amb el navegador. Totes les llibreries són locals (`js/vendor`), i
   per això també funciona sense connexió.
-- **Publicar-la:** activa GitHub Pages (branca i carpeta arrel) o puja la carpeta a qualsevol servidor web estàtic.
+- **Publicar-la amb GitHub Pages:** *Settings → Pages → Build and deployment → Source: «Deploy from a branch»*,
+  branca `main`, carpeta `/ (root)` → *Save*. En 1-2 minuts queda disponible a
+  <https://rvs78.github.io/anatomia/>. Cada canvi que arribi a `main` es republica sol.
+  També es pot pujar la carpeta a qualsevol servidor web estàtic.
 - **Recollir resultats (opcional):** a `js/config.js`, posa a `RESULTS_ENDPOINT` la URL d'un servei que accepti un
   `POST` amb JSON (per exemple, una aplicació web de Google Apps Script que escrigui en un full de càlcul). Si no
   s'hi posa res, els resultats només es desen al navegador de l'alumne.
