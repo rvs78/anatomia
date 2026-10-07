@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cor en Joc · Anatomia del cor</title>
+  <meta name="description" content="Activitat interactiva en tres fases sobre l'anatomia del cor humà. Rubén Vallejo · FP Sanitari Vall d'Hebron · 2026.">
+  <meta name="author" content="Rubén Vallejo">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23e8605c' d='M16 29s-12-7.4-12-16a7 7 0 0 1 12-4.9A7 7 0 0 1 28 13c0 8.6-12 16-12 16z'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Salta al contingut</a>
+
+  <!-- ===================== MARCADOR (HUD) ===================== -->
+  <header class="hud" id="hud" hidden>
+    <div class="hud__brand">
+      <svg class="hud__logo" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 29s-12-7.4-12-16a7 7 0 0 1 12-4.9A7 7 0 0 1 28 13c0 8.6-12 16-12 16z"/></svg>
+      <div>
+        <strong>Cor en Joc</strong>
+        <span class="hud__player" id="hudPlayer"></span>
+      </div>
+    </div>
+    <ol class="hud__phases" aria-label="Fases">
+      <li data-phase="1">1 · Model 3D</li>
+      <li data-phase="2">2 · Cicle cardíac</li>
+      <li data-phase="3">3 · Text</li>
+    </ol>
+    <div class="hud__stats">
+      <div class="hud__score" aria-live="polite"><span>Punts</span><strong id="hudScore">0</strong></div>
+      <div class="hud__lives" id="hudLives" role="img" aria-label="10 cors"></div>
+      <button class="icon-btn" id="btnSound" type="button" aria-pressed="true" title="So activat/desactivat" aria-label="So">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="snd-wave" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <button class="icon-btn" id="btnHelp" type="button" title="Instruccions" aria-label="Instruccions">?</button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ===================== PRESENTACIÓ + REGISTRE ===================== -->
+    <section class="screen screen--intro is-active" id="screen-intro" aria-labelledby="introTitle">
+      <div class="intro">
+        <div class="intro__hero">
+          <p class="eyebrow">Sistema cardiovascular · Activitat interactiva</p>
+          <h1 id="introTitle" class="display">Cor en Joc</h1>
+          <p class="intro__subtitle">Anatomia del cor humà en tres fases: explora'l en 3D, fes-lo bategar i explica'l amb les teves paraules.</p>
+
+          <div class="author-card">
+            <div class="author-card__avatar" aria-hidden="true">RV</div>
+            <div>
+              <p class="author-card__name">Rubén Vallejo</p>
+              <p class="author-card__role">Autor i professor · FP Sanitari Vall d'Hebron</p>
+              <p class="author-card__year">2026</p>
+            </div>
+          </div>
+
+          <ol class="phase-cards">
+            <li class="phase-card">
+              <span class="phase-card__num">1</span>
+              <h2>Model 3D</h2>
+              <p>Gira, obre i fes bategar un cor tridimensional. Clica cada estructura i escriu-ne el nom.</p>
+            </li>
+            <li class="phase-card">
+              <span class="phase-card__num">2</span>
+              <h2>Sístole i diàstole</h2>
+              <p>Obre i tanca les vàlvules per pilotar el cicle cardíac i guia una gota de sang pel circuit.</p>
+            </li>
+            <li class="phase-card">
+              <span class="phase-card__num">3</span>
+              <h2>Text amb buits</h2>
+              <p>Arrossega cada etiqueta al lloc correcte d'un text sobre l'anatomia i la fisiologia del cor.</p>
+            </li>
+          </ol>
+        </div>
+
+        <aside class="intro__panel">
+          <div class="lives-intro" aria-hidden="true" id="introHearts"></div>
+          <h2 class="panel-title">Abans de començar</h2>
+          <ul class="rules">
+            <li><strong>Tens 10 cors</strong> per a tota l'activitat. Cada error en resta un.</li>
+            <li>Encert al primer intent: <strong>punts sencers</strong>. Després d'un error: la meitat.</li>
+            <li>Si et quedes sense cors, l'activitat s'acaba i veuràs els teus resultats.</li>
+          </ul>
+          <form id="registerForm" class="form" novalidate>
+            <div class="field">
+              <label for="playerName">Nom i cognoms</label>
+              <input id="playerName" name="name" type="text" autocomplete="name" required minlength="3" placeholder="Ex.: Laia Puig Serra">
+              <p class="field__error" id="nameError" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="playerEmail">Correu electrònic</label>
+              <input id="playerEmail" name="email" type="email" autocomplete="email" required placeholder="nom@exemple.cat">
+              <p class="field__error" id="emailError" role="alert"></p>
+            </div>
+            <button class="btn btn--primary btn--block" type="submit" id="btnStart">Comença l'activitat</button>
+          </form>
+          <p class="fineprint">Les dades només s'utilitzen per identificar l'informe de resultats i es desen al teu navegador.</p>
+        </aside>
+      </div>
+      <footer class="credits">Rubén Vallejo · FP Sanitari Vall d'Hebron · 2026 · Continguts basats en la unitat «Anatomia del Cor».</footer>
+    </section>
+
+    <!-- ===================== INSTRUCCIONS DE FASE ===================== -->
+    <section class="screen" id="screen-instr" aria-labelledby="instrTitle">
+      <div class="instr card">
+        <p class="eyebrow" id="instrEyebrow">Fase 1 de 3</p>
+        <h2 class="display display--md" id="instrTitle">Instruccions</h2>
+        <p class="instr__goal" id="instrGoal"></p>
+        <ol class="steps" id="instrSteps"></ol>
+        <div class="instr__scoring" id="instrScoring"></div>
+        <div class="instr__actions">
+          <button class="btn btn--primary" id="btnInstrGo" type="button">Som-hi!</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FASE 1: MODEL 3D ===================== -->
+    <section class="screen screen--game" id="screen-p1" aria-labelledby="p1Title">
+      <div class="p1">
+        <div class="p1__stage" id="p1Stage">
+          <canvas id="heartCanvas" aria-label="Model 3D del cor. Arrossega per girar-lo i clica una estructura per identificar-la."></canvas>
+          <div class="p1__labels" id="p1Labels" aria-hidden="true"></div>
+          <div class="p1__orient" aria-hidden="true"><span>COSTAT DRET</span><span>COSTAT ESQUERRE</span></div>
+          <div class="p1__tip" id="p1Tip" aria-hidden="true"></div>
+          <p class="p1__loading" id="p1Loading">Preparant el model 3D…</p>
+        </div>
+        <aside class="p1__side">
+          <h2 class="panel-title" id="p1Title">Fase 1 · Identifica el cor</h2>
+          <div class="progress" aria-label="Progrés"><div class="progress__bar" id="p1Bar"></div></div>
+          <p class="progress__txt"><strong id="p1Count">0</strong> / <span id="p1Total">16</span> estructures identificades</p>
+
+          <fieldset class="controls">
+            <legend>Manipula el model</legend>
+            <label class="switch"><input type="checkbox" id="ctlRotate"><span>Gir automàtic</span></label>
+            <label class="switch"><input type="checkbox" id="ctlBeat" checked><span>Batec</span></label>
+            <label class="switch"><input type="checkbox" id="ctlLabels" checked><span>Etiquetes</span></label>
+            <label class="range"><span>Tall frontal <small>(obre el cor)</small></span><input type="range" id="ctlCut" min="0" max="100" value="0"></label>
+            <label class="range"><span>Transparència del miocardi</span><input type="range" id="ctlAlpha" min="0" max="85" value="0"></label>
+            <button class="btn btn--ghost btn--sm" type="button" id="ctlReset">Restableix la vista</button>
+          </fieldset>
+
+          <p class="hint-box">💡 Les <strong>vàlvules</strong> són a dins: fes servir el <em>tall frontal</em> o la <em>transparència</em> per veure-les.</p>
+          <ul class="found-list" id="p1List"></ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===================== FASE 2: CICLE CARDÍAC ===================== -->
+    <section class="screen screen--game" id="screen-p2" aria-labelledby="p2Title">
+      <div class="p2">
+        <div class="p2__diagram card">
+          <svg id="cycleSvg" viewBox="0 0 800 620" role="img" aria-labelledby="p2SvgTitle">
+            <title id="p2SvgTitle">Esquema 2D del cor amb vàlvules interactives</title>
+          </svg>
+          <div class="timeline" id="timeline" aria-hidden="true">
+            <div class="timeline__seg" data-seg="atrial" style="flex:1">Sístole auricular<small>0,1 s</small></div>
+            <div class="timeline__seg" data-seg="ventricular" style="flex:3">Sístole ventricular<small>0,3 s</small></div>
+            <div class="timeline__seg" data-seg="diastole" style="flex:4">Diàstole<small>0,4 s</small></div>
+            <div class="timeline__cursor" id="timelineCursor"></div>
+          </div>
+        </div>
+
+        <aside class="p2__side card">
+          <!-- Part A -->
+          <div id="p2PartA">
+            <p class="eyebrow">Part A · Pilota el cicle <span id="p2aStep"></span></p>
+            <h2 class="panel-title" id="p2Title">Escenari</h2>
+            <p class="scenario" id="p2Scenario"></p>
+
+            <div class="q">
+              <p class="q__label"><span class="q__n">1</span> Clica les vàlvules de l'esquema per obrir-les o tancar-les.</p>
+              <ul class="valve-state" id="valveState"></ul>
+            </div>
+            <div class="q">
+              <p class="q__label" id="lblContract"><span class="q__n">2</span> Quines cavitats es contrauen?</p>
+              <div class="seg" role="radiogroup" aria-labelledby="lblContract" id="optContract">
+                <button type="button" role="radio" aria-checked="false" data-v="none">Cap</button>
+                <button type="button" role="radio" aria-checked="false" data-v="atria">Aurícules</button>
+                <button type="button" role="radio" aria-checked="false" data-v="ventricles">Ventricles</button>
+              </div>
+            </div>
+            <div class="q">
+              <p class="q__label" id="lblVent"><span class="q__n">3</span> Els ventricles són en…</p>
+              <div class="seg" role="radiogroup" aria-labelledby="lblVent" id="optVent">
+                <button type="button" role="radio" aria-checked="false" data-v="systole">Sístole</button>
+                <button type="button" role="radio" aria-checked="false" data-v="diastole">Diàstole</button>
+              </div>
+            </div>
+            <button class="btn btn--primary btn--block btn--pump" id="btnPump" type="button">
+              <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 29s-12-7.4-12-16a7 7 0 0 1 12-4.9A7 7 0 0 1 28 13c0 8.6-12 16-12 16z"/></svg>
+              Bombeja!
+            </button>
+          </div>
+
+          <!-- Part B -->
+          <div id="p2PartB" hidden>
+            <p class="eyebrow">Part B · Segueix la gota</p>
+            <h2 class="panel-title">On va ara la sang?</h2>
+            <p class="scenario" id="p2bPrompt">La gota és als <strong>teixits del cos</strong>, carregada de CO₂. Prem, en ordre, cada estructura per on passarà.</p>
+            <div class="route-btns" id="routeBtns"></div>
+            <ol class="route-log" id="routeLog" aria-live="polite"></ol>
+          </div>
+
+          <div class="feedback" id="p2Feedback" role="status" aria-live="polite"></div>
+          <button class="btn btn--secondary btn--block" id="btnP2Next" type="button" hidden>Continua</button>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===================== FASE 3: TEXT AMB BUITS ===================== -->
+    <section class="screen screen--game" id="screen-p3" aria-labelledby="p3Title">
+      <div class="p3">
+        <div class="p3__bank card" id="tagBank" aria-label="Etiquetes">
+          <p class="eyebrow">Arrossega cada etiqueta al seu buit · o toca l'etiqueta i després el buit</p>
+          <div class="tags" id="tags"></div>
+        </div>
+        <article class="p3__text card">
+          <h2 class="display display--sm" id="p3Title"></h2>
+          <div id="clozeText" class="cloze"></div>
+          <div class="feedback" id="p3Feedback" role="status" aria-live="polite"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== RESUM DE FASE ===================== -->
+    <section class="screen" id="screen-summary" aria-labelledby="sumTitle">
+      <div class="summary card">
+        <div class="summary__badge" id="sumBadge" aria-hidden="true"></div>
+        <p class="eyebrow" id="sumEyebrow"></p>
+        <h2 class="display display--md" id="sumTitle"></h2>
+        <dl class="kpis" id="sumKpis"></dl>
+        <div class="summary__feedback" id="sumFeedback"></div>
+        <button class="btn btn--primary" id="btnSumNext" type="button">Continua</button>
+      </div>
+    </section>
+
+    <!-- ===================== RESULTATS FINALS ===================== -->
+    <section class="screen" id="screen-results" aria-labelledby="resTitle">
+      <div class="results card" id="resultsCard">
+        <header class="results__head">
+          <div>
+            <p class="eyebrow" id="resStatus"></p>
+            <h2 class="display display--md" id="resTitle">Resultats</h2>
+            <p class="results__who" id="resWho"></p>
+          </div>
+          <div class="grade" id="resGrade" aria-label="Nota"></div>
+        </header>
+        <dl class="kpis" id="resKpis"></dl>
+        <div class="phase-bars" id="resPhases"></div>
+        <h3 class="panel-title">Retroalimentació</h3>
+        <div class="results__feedback" id="resFeedback"></div>
+        <div class="results__actions no-print">
+          <button class="btn btn--primary" id="btnPrint" type="button">Imprimeix / Desa PDF</button>
+          <button class="btn btn--secondary" id="btnDownload" type="button">Descarrega l'informe (.txt)</button>
+          <button class="btn btn--secondary" id="btnCsv" type="button">Descarrega (.csv)</button>
+          <button class="btn btn--ghost" id="btnRestart" type="button">Torna a jugar</button>
+        </div>
+        <details class="history no-print">
+          <summary>Historial en aquest navegador</summary>
+          <ol id="resHistory"></ol>
+        </details>
+        <footer class="results__foot">Cor en Joc · Rubén Vallejo · FP Sanitari Vall d'Hebron · 2026</footer>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== MODAL FASE 1 ===================== -->
+  <div class="modal" id="identifyModal" hidden>
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal__x" type="button" data-close aria-label="Tanca">×</button>
+      <p class="eyebrow">Identifica l'estructura</p>
+      <h2 class="modal__title" id="modalTitle">Què és aquesta estructura?</h2>
+      <form id="identifyForm" autocomplete="off">
+        <input id="identifyInput" type="text" placeholder="Escriu-ne el nom (p. ex. vena cava…)" aria-label="Nom de l'estructura" spellcheck="false">
+        <p class="modal__hint" id="identifyHint"></p>
+        <div class="feedback" id="identifyFeedback" role="status" aria-live="polite"></div>
+        <div class="modal__actions">
+          <button class="btn btn--ghost btn--sm" type="button" id="btnHint">Pista (−30 punts)</button>
+          <button class="btn btn--primary" type="submit" id="btnCheck">Comprova</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================== GAME OVER ===================== -->
+  <div class="modal" id="gameOverModal" hidden>
+    <div class="modal__backdrop"></div>
+    <div class="modal__dialog modal__dialog--center" role="alertdialog" aria-modal="true" aria-labelledby="goTitle">
+      <div class="broken-heart" aria-hidden="true">💔</div>
+      <h2 class="modal__title" id="goTitle">T'has quedat sense cors</h2>
+      <p>L'activitat s'ha aturat. Mira els resultats per saber què has de repassar.</p>
+      <button class="btn btn--primary" id="btnGoResults" type="button">Veure els resultats</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Llibreries locals (sense dependències de xarxa) -->
+  <script src="js/vendor/three.js"></script>
+  <script src="js/vendor/OrbitControls.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/heart3d.js"></script>
+  <script src="js/phase1.js"></script>
+  <script src="js/phase2.js"></script>
+  <script src="js/phase3.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
