@@ -1,0 +1,120 @@
+{
+  "_descripcio": "Especificacions de les il·lustracions generades per a la presentació «RA2.2 Vasos Sanguinis i Circulació». Cada entrada descriu la vista, les estructures, les etiquetes en català i les restriccions; el text del prompt es construeix a partir d'aquests camps.",
+  "estil_comu": {
+    "estil": "il·lustració mèdica de llibre de text d'anatomia, realista i neta, colors anatòmics convencionals (artèries vermelles, venes blaves, limfa verda)",
+    "fons": "blanc pur",
+    "etiquetes": "caixes arrodonides blanques amb vora gris fosc, tipografia sans-serif fosca i gran, línies guia fines que acaben exactament sobre l'estructura",
+    "idioma": "català; text exactament com s'indica, sense afegir altres paraules",
+    "prohibit": ["títol general", "marca d'aigua", "codi QR", "logotips", "text en altres idiomes"]
+  },
+  "imatges": [
+    {
+      "id": "atles_arteries",
+      "pagina": "Atles Vascular del Cos Humà (esquerra)",
+      "aspecte": "1:1",
+      "vista": "cos humà adult sencer, vista anterior, pell semitransparent i silueta neutra, només el sistema arterial dibuixat en vermell",
+      "estructures": ["arc aòrtic", "aorta toràcica i abdominal", "caròtides comunes", "subclàvies", "axil·lars", "braquials", "radials", "cubitals", "tronc celíac", "artèries renals", "ilíaques comunes i externes", "femorals", "poplítees", "tibials anteriors i posteriors", "pèdies"],
+      "etiquetes": ["Caròtida comuna", "Subclàvia", "Arc aòrtic", "Axil·lar", "Braquial", "Aorta toràcica", "Tronc celíac", "Renal", "Aorta abdominal", "Radial", "Cubital", "Ilíaca comuna", "Ilíaca externa", "Femoral", "Poplítia", "Tibial anterior", "Tibial posterior", "Pèdia"],
+      "composicio": "figura centrada; etiquetes en dues columnes ordenades de dalt a baix a l'esquerra i a la dreta, cadascuna amb una línia que apunta al vas corresponent d'un sol costat del cos"
+    },
+    {
+      "id": "atles_venes",
+      "pagina": "Atles Vascular del Cos Humà (dreta)",
+      "aspecte": "1:1",
+      "vista": "cos humà adult sencer, vista anterior, mateixa silueta i escala que l'atles d'artèries, només el sistema venós dibuixat en blau",
+      "estructures": ["jugulars internes i externes", "subclàvies", "braquiocefàliques", "cava superior", "cefàliques", "basíliques", "mitjanes del colze", "cava inferior", "renals", "ilíaques comunes", "femorals", "safena magna", "poplítees", "tibials anteriors", "arc venós dorsal del peu"],
+      "etiquetes": ["Jugular interna", "Jugular externa", "Subclàvia", "Braquiocefàlica", "Cava superior", "Cefàlica", "Basílica", "Mitjana del colze", "Cava inferior", "Renal", "Ilíaca comuna", "Femoral", "Safena magna", "Poplítia", "Tibial anterior", "Arc venós dorsal"],
+      "composicio": "figura centrada; etiquetes en dues columnes ordenades a l'esquerra i a la dreta; la cefàlica al costat lateral (polze) i la basílica al medial del braç; la safena magna a la cara medial de la cama"
+    },
+    {
+      "id": "sinus_durals",
+      "pagina": "Sinus Venosos de la Duramàter",
+      "aspecte": "1:1",
+      "vista": "cap en tall sagital medi (vista lateral interna), encèfal retirat parcialment, duramàter i falç del cervell visibles amb els sinus en blau",
+      "estructures": ["sinus sagital superior a la vora superior de la falç", "sinus sagital inferior a la vora lliure de la falç", "vena cerebral magna (de Galè)", "sinus recte", "confluència dels sinus a la protuberància occipital", "sinus transvers", "sinus sigmoide", "vena jugular interna al forat jugular", "sinus cavernós al costat de la sella turca"],
+      "etiquetes": ["Sinus sagital superior", "Sinus sagital inferior", "Vena cerebral magna", "Sinus recte", "Confluència dels sinus", "Sinus transvers", "Sinus sigmoide", "Vena jugular interna", "Sinus cavernós"],
+      "composicio": "fletxes blaves petites que indiquen el sentit del flux cap a la jugular interna"
+    },
+    {
+      "id": "fossa_cubital",
+      "pagina": "Venes de la Fossa Cubital",
+      "aspecte": "1:1",
+      "vista": "braç dret estès en supinació, vista anterior del colze i l'avantbraç, pell lleugerament transparent per veure les venes superficials en blau",
+      "estructures": ["vena cefàlica al costat lateral (del polze)", "vena basílica al costat medial (del dit petit)", "vena mitjana del colze que les uneix en diagonal per davant de la fossa cubital", "artèria braquial profunda en vermell sota l'aponeurosi bicipital", "torniquet elàstic per sobre del colze", "agulla de venopunció entrant a la vena mitjana del colze amb angle de 15-30 graus"],
+      "etiquetes": ["Vena cefàlica", "Vena basílica", "Vena mitjana del colze", "Artèria braquial (profunda)", "Torniquet", "Punt de venopunció"],
+      "composicio": "costat del polze a l'esquerra de la imatge; agulla petita i realista, sense sang ni ferida"
+    },
+    {
+      "id": "azigos_cava",
+      "pagina": "Retorn Venós del Tronc",
+      "aspecte": "1:1",
+      "vista": "paret posterior del tòrax i de l'abdomen en vista anterior, òrgans retirats excepte els ronyons; columna vertebral al centre",
+      "estructures": ["vena cava superior", "vena àzigos a la dreta de la columna desembocant a la cava superior", "vena hemiàzigos a l'esquerra creuant cap a l'àzigos", "venes intercostals", "venes suprahepàtiques entrant a la cava inferior sota el diafragma", "vena cava inferior a la dreta de l'aorta", "aorta en vermell clar com a referència", "vena renal esquerra llarga passant per davant de l'aorta", "vena renal dreta curta", "vena gonadal dreta drenant directament a la cava inferior", "vena gonadal esquerra drenant a la vena renal esquerra", "venes ilíaques comunes"],
+      "etiquetes": ["Vena cava superior", "Vena àzigos", "Vena hemiàzigos", "Venes intercostals", "Venes suprahepàtiques", "Vena cava inferior", "Aorta", "Vena renal esquerra", "Vena renal dreta", "Vena gonadal dreta", "Vena gonadal esquerra", "Venes ilíaques comunes"],
+      "composicio": "convenció de vista anterior: el costat dret del pacient a l'esquerra de la imatge"
+    },
+    {
+      "id": "patologia_venosa",
+      "pagina": "Patologia Venosa: Trombosi i Embòlia",
+      "aspecte": "1:1",
+      "vista": "dos panells verticals connectats per una fletxa: a l'esquerra, cama amb tall de les venes profundes; a la dreta, cor i pulmons",
+      "estructures": ["panell A: pantorrilla inflamada i vermellosa amb un trombe vermell fosc dins la vena poplítia i les tibials", "fletxa vermella discontínua que puja per la vena femoral i la cava inferior fins al cor dret", "panell B: cor i pulmons; èmbol fosc encallat a la bifurcació de l'artèria pulmonar; zona del pulmó sense reg sanguini amb to pàl·lid"],
+      "etiquetes": ["A. Trombosi venosa profunda", "Trombe", "Cama inflamada", "B. Tromboembolisme pulmonar", "Èmbol", "Artèria pulmonar", "Cor dret"],
+      "composicio": "panells amb vora arrodonida i el mateix estil; artèria pulmonar en blau (sang desoxigenada)"
+    },
+    {
+      "id": "trombe_coagul",
+      "pagina": "Trombe Antemortem o Coàgul Postmortem?",
+      "aspecte": "1:1",
+      "vista": "dues venes obertes longitudinalment, una al costat de l'altra, com en una peça de necròpsia",
+      "estructures": ["esquerra: trombe antemortem adherit a la paret, mat, sec i fràgil, amb bandes alternes clares (plaquetes i fibrina) i vermelles (eritròcits)", "dreta: coàgul postmortem lliure, elàstic i brillant, motlle del vas, part inferior vermell fosc i part superior groguenca"],
+      "etiquetes": ["Trombe antemortem", "Línies de Zahn", "Adherit a la paret", "Coàgul postmortem", "«Gelea de groselles»", "«Greix de pollastre»", "No adherit"],
+      "composicio": "aspecte de fotografia macroscòpica il·lustrada, sobri i adequat per a l'aula"
+    },
+    {
+      "id": "din_expulsio",
+      "pagina": "Dinàmica del Retorn Venós (pas 1)",
+      "aspecte": "4:3",
+      "vista": "tall del cor en sístole: ventricle esquerre contret expulsant sang a l'aorta ascendent; la paret elàstica de l'aorta es distén",
+      "estructures": ["ventricle esquerre", "vàlvula aòrtica oberta", "aorta ascendent amb paret elàstica dilatada", "fletxes vermelles de flux"],
+      "etiquetes": ["Ventricle esquerre", "Vàlvula aòrtica oberta", "Aorta elàstica"],
+      "composicio": "pocs elements, etiquetes grans"
+    },
+    {
+      "id": "din_hematosi",
+      "pagina": "Dinàmica del Retorn Venós (pas 2)",
+      "aspecte": "4:3",
+      "vista": "dos mini-panells: a l'esquerra un alvèol pulmonar envoltat d'un capil·lar (hematosi); a la dreta un capil·lar entre cèl·lules dels teixits",
+      "estructures": ["alvèol: O₂ passa de l'alvèol a la sang i CO₂ de la sang a l'alvèol", "teixits: O₂ surt del capil·lar cap a les cèl·lules i CO₂ entra al capil·lar"],
+      "etiquetes": ["Pulmó (hematosi)", "Teixits", "O₂", "CO₂"],
+      "composicio": "fletxes vermelles per a l'O₂ i blaves per al CO₂, direccions correctes"
+    },
+    {
+      "id": "din_bomba",
+      "pagina": "Dinàmica del Retorn Venós (pas 3)",
+      "aspecte": "4:3",
+      "vista": "vena profunda de la cama en tall longitudinal entre dos músculs de la pantorrilla que es contrauen",
+      "estructures": ["músculs contrets que comprimeixen la vena", "vàlvula superior oberta", "vàlvula inferior tancada", "fletxa blava cap amunt"],
+      "etiquetes": ["Múscul contret", "Vàlvula oberta", "Vàlvula tancada", "Cap al cor"],
+      "composicio": "pocs elements, etiquetes grans"
+    },
+    {
+      "id": "arbre_aorta",
+      "pagina": "Arbre Vascular: Tronc i Extremitats Inferiors (esquerra)",
+      "aspecte": "3:2",
+      "vista": "vista anterior de l'abdomen inferior i la pelvis amb ossos semitransparents",
+      "estructures": ["aorta abdominal", "bifurcació a nivell de L4", "ilíaques comunes", "ilíaques internes cap a la pelvis", "ilíaques externes", "lligament inguinal", "inici de les femorals"],
+      "etiquetes": ["Aorta abdominal", "Bifurcació (L4)", "Ilíaca comuna", "Ilíaca interna", "Ilíaca externa", "Lligament inguinal", "Femoral"],
+      "composicio": "etiquetes a banda i banda"
+    },
+    {
+      "id": "arbre_cama",
+      "pagina": "Arbre Vascular: Tronc i Extremitats Inferiors (dreta)",
+      "aspecte": "1:1",
+      "vista": "extremitat inferior dreta sencera, vista anterior amb la poplítia i la tibial posterior visibles per transparència",
+      "estructures": ["femoral", "femoral profunda", "poplítia darrere el genoll", "tibial anterior", "tibial posterior", "peroneal", "pèdia al dors del peu"],
+      "etiquetes": ["Femoral", "Femoral profunda", "Poplítia", "Tibial anterior", "Tibial posterior", "Peroneal", "Pèdia"],
+      "composicio": "cama centrada, etiquetes a banda i banda"
+    }
+  ]
+}
